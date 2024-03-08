@@ -43,8 +43,8 @@ func TestRule_Apply(t *testing.T) {
 			action: func(i int) (string, error) {
 				return "", nil
 			},
-			target:    2,
-			wantErr:   true,
+			target:  2,
+			wantErr: true,
 		},
 		{
 			name:          "ActionError",
@@ -138,7 +138,7 @@ func TestRule_Combine(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			r := rules.NewRule(tt.specification, tt.action).Combine(tt.rules...)
 			gotResult, err := r.Apply(tt.target)
 

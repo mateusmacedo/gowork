@@ -7,16 +7,15 @@ import (
 type CallableCandidateAssertion func(candidate any) bool
 
 type dummySpecification struct {
-    Callable CallableCandidateAssertion
+	Callable CallableCandidateAssertion
 }
 
 func (d dummySpecification) IsSatisfiedBy(candidate any) bool {
-    return d.Callable(candidate)
+	return d.Callable(candidate)
 }
 
 func NewDummySpecification(callable CallableCandidateAssertion) specification.Specification[any] {
-    return &dummySpecification{
-        Callable: callable,
-    }
+	return &dummySpecification{
+		Callable: callable,
+	}
 }
-
