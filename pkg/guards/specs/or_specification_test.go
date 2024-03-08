@@ -29,7 +29,7 @@ func TestNewOrSpecification(t *testing.T) {
 		args struct {
 			specs []specification.Specification[specification.Candidate]
 		}
-		want *specification.OrSpecification
+		want *specification.OrSpecification[specification.Candidate]
 	}{
 		{
 			name: "Testando a criação da OrSpecification com uma especificação dummy",

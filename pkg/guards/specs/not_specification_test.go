@@ -17,7 +17,7 @@ func TestNewNotSpecification(t *testing.T) {
 	tests := []struct {
 		name string
 		spec specification.Specification[specification.Candidate]
-		want *specification.NotSpecification
+		want *specification.NotSpecification[specification.Candidate]
 	}{
 		{
 			name: "Testando a criação da NotSpecification com uma especificação dummy",

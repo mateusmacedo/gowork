@@ -22,7 +22,7 @@ func TestNewAndSpecification(t *testing.T) {
 	tests := []struct {
 		name  string
 		specs []specification.Specification[specification.Candidate]
-		want  *specification.AndSpecification
+		want  *specification.AndSpecification[specification.Candidate]
 	}{
 		{
 			name:  "Testando a criação da AndSpecification com uma especificação dummy",
