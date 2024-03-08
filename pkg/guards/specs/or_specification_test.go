@@ -8,20 +8,11 @@ import (
 )
 
 func TestNewOrSpecification(t *testing.T) {
-	// Definir uma função de chamada para a especificação dummy
 	callable := func(candidate any) bool {
-		// Implemente sua lógica de avaliação aqui
-		// Por exemplo, sempre retornar true para fins de teste
 		return true
 	}
-
-	// Criar uma especificação dummy usando pacote fixtures
 	dummySpec := fixtures.NewDummySpecification(callable)
-
-	// Criar uma lista de especificações para passar para NewOrSpecification
 	specs := []specification.Specification[any]{dummySpec}
-
-	// Criar a expectativa de uma instância de OrSpecification
 	want := specification.NewOrSpecification(specs...)
 
 	tests := []struct {
@@ -32,7 +23,7 @@ func TestNewOrSpecification(t *testing.T) {
 		want *specification.OrSpecification[any]
 	}{
 		{
-			name: "Testando a criação da OrSpecification com uma especificação dummy",
+			name: "Create a new or specification",
 			args: struct {
 				specs []specification.Specification[any]
 			}{
@@ -52,51 +43,43 @@ func TestNewOrSpecification(t *testing.T) {
 
 func TestOrSpecification_IsSatisfiedBy(t *testing.T) {
 	tests := []struct {
-		name   string
-		specs []specification.Specification[any]
-		candidate   any
-		want   bool
+		name      string
+		specs     []specification.Specification[any]
+		candidate any
+		want      bool
 	}{
 		{
-			name:      "satisfied by almost one specifications",
-			specs:     []specification.Specification[any]{
+			name: "Satisfied by almost one specifications",
+			specs: []specification.Specification[any]{
 				fixtures.NewDummySpecification(
 					func(candidate any) bool {
-						// Implemente sua lógica de avaliação aqui
-						// Por exemplo, sempre retornar true para fins de teste
 						return true
 					},
 				),
 				fixtures.NewDummySpecification(
 					func(candidate any) bool {
-						// Implemente sua lógica de avaliação aqui
-						// Por exemplo, sempre retornar true para fins de teste
 						return false
 					},
 				),
 			},
-			candidate: &struct{}{}, // Substitua pelo candidato real, se necessário
+			candidate: &struct{}{},
 			want:      true,
 		},
 		{
-			name:      "not satisfied by all specifications",
-			specs:     []specification.Specification[any]{
+			name: "Not satisfied by all specifications",
+			specs: []specification.Specification[any]{
 				fixtures.NewDummySpecification(
 					func(candidate any) bool {
-						// Implemente sua lógica de avaliação aqui
-						// Por exemplo, sempre retornar true para fins de teste
 						return false
 					},
 				),
 				fixtures.NewDummySpecification(
 					func(candidate any) bool {
-						// Implemente sua lógica de avaliação aqui
-						// Por exemplo, sempre retornar true para fins de teste
 						return false
 					},
 				),
 			},
-			candidate: &struct{}{}, // Substitua pelo candidato real, se necessário
+			candidate: &struct{}{},
 			want:      false,
 		},
 	}

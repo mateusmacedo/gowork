@@ -25,7 +25,7 @@ func TestNewAndSpecification(t *testing.T) {
 		want  *specification.AndSpecification[any]
 	}{
 		{
-			name:  "Testando a criação da AndSpecification com uma especificação dummy",
+			name:  "Create a new and specification",
 			specs: specs,
 			want:  want,
 		},
@@ -47,7 +47,7 @@ func TestAndSpecification_IsSatisfiedBy(t *testing.T) {
 		want      bool
 	}{
 		{
-			name: "satisfied by all specifications",
+			name: "Satisfied by all specifications",
 			specs: []specification.Specification[any]{
 				fixtures.NewDummySpecification(
 					func(candidate any) bool {
@@ -64,7 +64,7 @@ func TestAndSpecification_IsSatisfiedBy(t *testing.T) {
 			want:      true,
 		},
 		{
-			name: "not satisfied by all specifications",
+			name: "Not satisfied by all specifications",
 			specs: []specification.Specification[any]{
 				fixtures.NewDummySpecification(
 					func(candidate any) bool {

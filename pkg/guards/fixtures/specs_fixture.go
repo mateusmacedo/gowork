@@ -11,7 +11,6 @@ type dummySpecification struct {
 }
 
 func (d dummySpecification) IsSatisfiedBy(candidate any) bool {
-    // Use a função de chamada para avaliar o candidato
     return d.Callable(candidate)
 }
 

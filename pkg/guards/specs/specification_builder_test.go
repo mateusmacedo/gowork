@@ -13,7 +13,7 @@ func TestNewSpecificationBuilder(t *testing.T) {
 		want specification.SpecificationBuilder[any]
 	}{
 		{
-			name: "Testando a criação de um SpecificationBuilder",
+			name: "Testing the creation of a new SpecificationBuilder",
 			want: &specification.BaseSpecificationBuilder[any]{},
 		},
 	}
@@ -27,20 +27,12 @@ func TestNewSpecificationBuilder(t *testing.T) {
 }
 
 func TestBaseSpecificationBuilder_BuildWithSpecification(t *testing.T) {
-	// Definir uma função de chamada para a especificação dummy
 	callable := func(candidate any) bool {
-		// Implemente sua lógica de avaliação aqui
-		// Por exemplo, sempre retornar true para fins de teste
 		return true
 	}
 
-	// Criar uma especificação dummy usando pacote fixtures
 	dummySpec := fixtures.NewDummySpecification(callable)
-
-	// Criar uma SpecificationBuilder
 	builder := specification.NewSpecificationBuilder[any]()
-
-	// Criar a expectativa de uma instância de SpecificationBuilder
 	want := builder.WithSpecification(dummySpec)
 
 	tests := []struct {
@@ -51,7 +43,7 @@ func TestBaseSpecificationBuilder_BuildWithSpecification(t *testing.T) {
 		want specification.SpecificationBuilder[any]
 	}{
 		{
-			name: "Testando a criação de um SpecificationBuilder com uma especificação dummy",
+			name: "Testing the WithSpecification composition",
 			args: struct {
 				spec specification.Specification[any]
 			}{
@@ -70,20 +62,12 @@ func TestBaseSpecificationBuilder_BuildWithSpecification(t *testing.T) {
 }
 
 func TestBaseSpecificationBuilder_BuildAnd(t *testing.T) {
-	// Definir uma função de chamada para a especificação dummy
 	callable := func(candidate any) bool {
-		// Implemente sua lógica de avaliação aqui
-		// Por exemplo, sempre retornar true para fins de teste
 		return true
 	}
 
-	// Criar uma especificação dummy usando pacote fixtures
 	dummySpec := fixtures.NewDummySpecification(callable)
-
-	// Criar uma SpecificationBuilder
 	builder := specification.NewSpecificationBuilder[any]()
-
-	// Criar a expectativa de uma instância de SpecificationBuilder
 	want := builder.And(dummySpec)
 
 	tests := []struct {
@@ -94,7 +78,7 @@ func TestBaseSpecificationBuilder_BuildAnd(t *testing.T) {
 		want specification.SpecificationBuilder[any]
 	}{
 		{
-			name: "Testando a criação de um SpecificationBuilder com uma especificação dummy",
+			name: "Testing the And composition",
 			args: struct {
 				spec specification.Specification[any]
 			}{
@@ -113,20 +97,14 @@ func TestBaseSpecificationBuilder_BuildAnd(t *testing.T) {
 }
 
 func TestBaseSpecificationBuilder_BuildOr(t *testing.T) {
-	// Definir uma função de chamada para a especificação dummy
 	callable := func(candidate any) bool {
-		// Implemente sua lógica de avaliação aqui
-		// Por exemplo, sempre retornar true para fins de teste
 		return true
 	}
 
-	// Criar uma especificação dummy usando pacote fixtures
 	dummySpec := fixtures.NewDummySpecification(callable)
 
-	// Criar uma SpecificationBuilder
 	builder := specification.NewSpecificationBuilder[any]()
 
-	// Criar a expectativa de uma instância de SpecificationBuilder
 	want := builder.Or(dummySpec)
 
 	tests := []struct {
@@ -137,7 +115,7 @@ func TestBaseSpecificationBuilder_BuildOr(t *testing.T) {
 		want specification.SpecificationBuilder[any]
 	}{
 		{
-			name: "Testando a criação de um SpecificationBuilder com uma especificação dummy",
+			name: "Testing the Or composition",
 			args: struct {
 				spec specification.Specification[any]
 			}{
@@ -156,20 +134,11 @@ func TestBaseSpecificationBuilder_BuildOr(t *testing.T) {
 }
 
 func TestBaseSpecificationBuilder_BuildNot(t *testing.T) {
-	// Definir uma função de chamada para a especificação dummy
 	callable := func(candidate any) bool {
-		// Implemente sua lógica de avaliação aqui
-		// Por exemplo, sempre retornar true para fins de teste
 		return true
 	}
-
-	// Criar uma especificação dummy usando pacote fixtures
 	dummySpec := fixtures.NewDummySpecification(callable)
-
-	// Criar uma SpecificationBuilder
 	builder := specification.NewSpecificationBuilder[any]()
-
-	// Criar a expectativa de uma instância de SpecificationBuilder
 	want := builder.WithSpecification(dummySpec).Not()
 
 	tests := []struct {
@@ -177,7 +146,7 @@ func TestBaseSpecificationBuilder_BuildNot(t *testing.T) {
 		want specification.SpecificationBuilder[any]
 	}{
 		{
-			name: "Testando a criação de um SpecificationBuilder com uma especificação dummy",
+			name: "Testing the Not composition",
 			want: want,
 		},
 	}
@@ -191,20 +160,11 @@ func TestBaseSpecificationBuilder_BuildNot(t *testing.T) {
 }
 
 func TestBaseSpecificationBuilder_Build(t *testing.T) {
-	// Definir uma função de chamada para a especificação dummy
 	callable := func(candidate any) bool {
-		// Implemente sua lógica de avaliação aqui
-		// Por exemplo, sempre retornar true para fins de teste
 		return true
 	}
-
-	// Criar uma especificação dummy usando pacote fixtures
 	dummySpec := fixtures.NewDummySpecification(callable)
-
-	// Criar uma SpecificationBuilder
 	builder := specification.NewSpecificationBuilder[any]()
-
-	// Criar a expectativa de uma instância de SpecificationBuilder
 	want := builder.WithSpecification(dummySpec).Build()
 
 	tests := []struct {
@@ -212,7 +172,7 @@ func TestBaseSpecificationBuilder_Build(t *testing.T) {
 		want specification.Specification[any]
 	}{
 		{
-			name: "Testando a criação de um SpecificationBuilder com uma especificação dummy",
+			name: "Testing the build",
 			want: want,
 		},
 	}

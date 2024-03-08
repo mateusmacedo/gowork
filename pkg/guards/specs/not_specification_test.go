@@ -20,7 +20,7 @@ func TestNewNotSpecification(t *testing.T) {
 		want *specification.NotSpecification[any]
 	}{
 		{
-			name: "Testando a criação da NotSpecification com uma especificação dummy",
+			name: "Create a new not specification",
 			spec: spec,
 			want: want,
 		},
@@ -42,7 +42,7 @@ func TestNotSpecification_IsSatisfiedBy(t *testing.T) {
 		want      bool
 	}{
 		{
-			name: "satisfied by the not specification",
+			name: "Satisfied by the not specification",
 			spec: fixtures.NewDummySpecification(
 				func(candidate any) bool {
 					return false
@@ -51,7 +51,7 @@ func TestNotSpecification_IsSatisfiedBy(t *testing.T) {
 			want:      true,
 		},
 		{
-			name: "not satisfied by the not specification",
+			name: "Not satisfied by the not specification",
 			spec: fixtures.NewDummySpecification(
 				func(candidate any) bool {
 					return true
