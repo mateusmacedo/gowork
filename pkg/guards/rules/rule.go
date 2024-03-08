@@ -38,8 +38,8 @@ func (r *rule[T, R]) Apply(target T) (R, error) {
 }
 
 func (r *rule[T, R]) BatchApply(targets []T) ([]R, []error) {
-	var results []R
-	var errors []error
+	results := make([]R, 0, len(targets))
+	errors := make([]error, 0)
 
 	for _, target := range targets {
 		result, err := r.Apply(target)
@@ -54,9 +54,10 @@ func (r *rule[T, R]) BatchApply(targets []T) ([]R, []error) {
 }
 
 func (r *rule[T, R]) Combine(rules ...Rule[T, R]) Rule[T, R] {
-	return &combinedRule[T, R]{
-		rules: append([]Rule[T, R]{r}, rules...),
-	}
+	newRules := make([]Rule[T, R], 0, len(rules)+1)
+	newRules = append(newRules, r)
+	newRules = append(newRules, rules...)
+	return &combinedRule[T, R]{rules: newRules}
 }
 
 type combinedRule[T any, R any] struct {
@@ -64,24 +65,27 @@ type combinedRule[T any, R any] struct {
 }
 
 func (cr *combinedRule[T, R]) Apply(target T) (R, error) {
-	var zero R
+	var lastResult R
 	for _, rule := range cr.rules {
-		if _, err := rule.Apply(target); err != nil {
-			return zero, err
+		var err error
+		lastResult, err = rule.Apply(target)
+		if err != nil {
+			return *new(R), err
 		}
 	}
-	return cr.rules[len(cr.rules)-1].Apply(target)
+	return lastResult, nil
 }
 
 func (cr *combinedRule[T, R]) Combine(rules ...Rule[T, R]) Rule[T, R] {
-	return &combinedRule[T, R]{
-		rules: append(cr.rules, rules...),
-	}
+	newRules := make([]Rule[T, R], len(cr.rules), len(cr.rules)+len(rules))
+	copy(newRules, cr.rules)
+	newRules = append(newRules, rules...)
+	return &combinedRule[T, R]{rules: newRules}
 }
 
 func (cr *combinedRule[T, R]) BatchApply(targets []T) ([]R, []error) {
-	var results []R
-	var errors []error
+	results := make([]R, 0, len(targets))
+	errors := make([]error, 0)
 
 	for _, target := range targets {
 		result, err := cr.Apply(target)
