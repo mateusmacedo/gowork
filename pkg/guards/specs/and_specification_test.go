@@ -8,11 +8,11 @@ import (
 )
 
 func TestNewAndSpecification(t *testing.T) {
-	specs := []specification.Specification[specification.Candidate]{
-		fixtures.NewDummySpecification(func(candidate specification.Candidate) bool {
+	specs := []specification.Specification[any]{
+		fixtures.NewDummySpecification(func(candidate any) bool {
 			return true
 		}),
-		fixtures.NewDummySpecification(func(candidate specification.Candidate) bool {
+		fixtures.NewDummySpecification(func(candidate any) bool {
 			return true
 		}),
 	}
@@ -21,8 +21,8 @@ func TestNewAndSpecification(t *testing.T) {
 
 	tests := []struct {
 		name  string
-		specs []specification.Specification[specification.Candidate]
-		want  *specification.AndSpecification[specification.Candidate]
+		specs []specification.Specification[any]
+		want  *specification.AndSpecification[any]
 	}{
 		{
 			name:  "Testando a criação da AndSpecification com uma especificação dummy",
@@ -42,20 +42,20 @@ func TestNewAndSpecification(t *testing.T) {
 func TestAndSpecification_IsSatisfiedBy(t *testing.T) {
 	tests := []struct {
 		name      string
-		specs     []specification.Specification[specification.Candidate]
-		candidate specification.Candidate
+		specs     []specification.Specification[any]
+		candidate any
 		want      bool
 	}{
 		{
 			name: "satisfied by all specifications",
-			specs: []specification.Specification[specification.Candidate]{
+			specs: []specification.Specification[any]{
 				fixtures.NewDummySpecification(
-					func(candidate specification.Candidate) bool {
+					func(candidate any) bool {
 						return true
 					},
 				),
 				fixtures.NewDummySpecification(
-					func(candidate specification.Candidate) bool {
+					func(candidate any) bool {
 						return true
 					},
 				),
@@ -65,14 +65,14 @@ func TestAndSpecification_IsSatisfiedBy(t *testing.T) {
 		},
 		{
 			name: "not satisfied by all specifications",
-			specs: []specification.Specification[specification.Candidate]{
+			specs: []specification.Specification[any]{
 				fixtures.NewDummySpecification(
-					func(candidate specification.Candidate) bool {
+					func(candidate any) bool {
 						return false
 					},
 				),
 				fixtures.NewDummySpecification(
-					func(candidate specification.Candidate) bool {
+					func(candidate any) bool {
 						return true
 					},
 				),

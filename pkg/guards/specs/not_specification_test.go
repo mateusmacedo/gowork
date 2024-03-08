@@ -8,7 +8,7 @@ import (
 )
 
 func TestNewNotSpecification(t *testing.T) {
-	spec := fixtures.NewDummySpecification(func(candidate specification.Candidate) bool {
+	spec := fixtures.NewDummySpecification(func(candidate any) bool {
 		return true
 	})
 
@@ -16,8 +16,8 @@ func TestNewNotSpecification(t *testing.T) {
 
 	tests := []struct {
 		name string
-		spec specification.Specification[specification.Candidate]
-		want *specification.NotSpecification[specification.Candidate]
+		spec specification.Specification[any]
+		want *specification.NotSpecification[any]
 	}{
 		{
 			name: "Testando a criação da NotSpecification com uma especificação dummy",
@@ -37,14 +37,14 @@ func TestNewNotSpecification(t *testing.T) {
 func TestNotSpecification_IsSatisfiedBy(t *testing.T) {
 	tests := []struct {
 		name      string
-		spec      specification.Specification[specification.Candidate]
-		candidate specification.Candidate
+		spec      specification.Specification[any]
+		candidate any
 		want      bool
 	}{
 		{
 			name: "satisfied by the not specification",
 			spec: fixtures.NewDummySpecification(
-				func(candidate specification.Candidate) bool {
+				func(candidate any) bool {
 					return false
 				}),
 			candidate: &struct{}{},
@@ -53,7 +53,7 @@ func TestNotSpecification_IsSatisfiedBy(t *testing.T) {
 		{
 			name: "not satisfied by the not specification",
 			spec: fixtures.NewDummySpecification(
-				func(candidate specification.Candidate) bool {
+				func(candidate any) bool {
 					return true
 				}),
 			candidate: &struct{}{},

@@ -9,7 +9,7 @@ import (
 
 func TestNewOrSpecification(t *testing.T) {
 	// Definir uma função de chamada para a especificação dummy
-	callable := func(candidate specification.Candidate) bool {
+	callable := func(candidate any) bool {
 		// Implemente sua lógica de avaliação aqui
 		// Por exemplo, sempre retornar true para fins de teste
 		return true
@@ -19,7 +19,7 @@ func TestNewOrSpecification(t *testing.T) {
 	dummySpec := fixtures.NewDummySpecification(callable)
 
 	// Criar uma lista de especificações para passar para NewOrSpecification
-	specs := []specification.Specification[specification.Candidate]{dummySpec}
+	specs := []specification.Specification[any]{dummySpec}
 
 	// Criar a expectativa de uma instância de OrSpecification
 	want := specification.NewOrSpecification(specs...)
@@ -27,14 +27,14 @@ func TestNewOrSpecification(t *testing.T) {
 	tests := []struct {
 		name string
 		args struct {
-			specs []specification.Specification[specification.Candidate]
+			specs []specification.Specification[any]
 		}
-		want *specification.OrSpecification[specification.Candidate]
+		want *specification.OrSpecification[any]
 	}{
 		{
 			name: "Testando a criação da OrSpecification com uma especificação dummy",
 			args: struct {
-				specs []specification.Specification[specification.Candidate]
+				specs []specification.Specification[any]
 			}{
 				specs: specs,
 			},
@@ -53,22 +53,22 @@ func TestNewOrSpecification(t *testing.T) {
 func TestOrSpecification_IsSatisfiedBy(t *testing.T) {
 	tests := []struct {
 		name   string
-		specs []specification.Specification[specification.Candidate]
-		candidate   specification.Candidate
+		specs []specification.Specification[any]
+		candidate   any
 		want   bool
 	}{
 		{
 			name:      "satisfied by almost one specifications",
-			specs:     []specification.Specification[specification.Candidate]{
+			specs:     []specification.Specification[any]{
 				fixtures.NewDummySpecification(
-					func(candidate specification.Candidate) bool {
+					func(candidate any) bool {
 						// Implemente sua lógica de avaliação aqui
 						// Por exemplo, sempre retornar true para fins de teste
 						return true
 					},
 				),
 				fixtures.NewDummySpecification(
-					func(candidate specification.Candidate) bool {
+					func(candidate any) bool {
 						// Implemente sua lógica de avaliação aqui
 						// Por exemplo, sempre retornar true para fins de teste
 						return false
@@ -80,16 +80,16 @@ func TestOrSpecification_IsSatisfiedBy(t *testing.T) {
 		},
 		{
 			name:      "not satisfied by all specifications",
-			specs:     []specification.Specification[specification.Candidate]{
+			specs:     []specification.Specification[any]{
 				fixtures.NewDummySpecification(
-					func(candidate specification.Candidate) bool {
+					func(candidate any) bool {
 						// Implemente sua lógica de avaliação aqui
 						// Por exemplo, sempre retornar true para fins de teste
 						return false
 					},
 				),
 				fixtures.NewDummySpecification(
-					func(candidate specification.Candidate) bool {
+					func(candidate any) bool {
 						// Implemente sua lógica de avaliação aqui
 						// Por exemplo, sempre retornar true para fins de teste
 						return false
