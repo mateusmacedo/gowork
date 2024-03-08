@@ -33,3 +33,39 @@ func TestNewNotSpecification(t *testing.T) {
 		})
 	}
 }
+
+func TestNotSpecification_IsSatisfiedBy(t *testing.T) {
+	tests := []struct {
+		name      string
+		spec      specification.Specification[specification.Candidate]
+		candidate specification.Candidate
+		want      bool
+	}{
+		{
+			name: "satisfied by the not specification",
+			spec: fixtures.NewDummySpecification(
+				func(candidate specification.Candidate) bool {
+					return false
+				}),
+			candidate: &struct{}{},
+			want:      true,
+		},
+		{
+			name: "not satisfied by the not specification",
+			spec: fixtures.NewDummySpecification(
+				func(candidate specification.Candidate) bool {
+					return true
+				}),
+			candidate: &struct{}{},
+			want:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			sut := specification.NewNotSpecification(tt.spec)
+			if got := sut.IsSatisfiedBy(tt.candidate); got != tt.want {
+				t.Errorf("NotSpecification.IsSatisfiedBy() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
