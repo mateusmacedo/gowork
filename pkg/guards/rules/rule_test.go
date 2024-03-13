@@ -84,8 +84,8 @@ func TestRule_Combine(t *testing.T) {
 		wantErr       bool
 	}
 
-	alwaysTrueSpec := mockSpecification[int]{isSatisfiedBy: true}
-	alwaysFalseSpec := mockSpecification[int]{isSatisfiedBy: false}
+	var alwaysTrueSpec specification.Specification[int] = mockSpecification[int]{isSatisfiedBy: true}
+	var alwaysFalseSpec specification.Specification[int] = mockSpecification[int]{isSatisfiedBy: false}
 	successAction := func(i int) (string, error) { return "ok", nil }
 	failAction := func(i int) (string, error) { return "", errors.New("action error") }
 
@@ -218,8 +218,8 @@ func TestCombinedRule_Combine(t *testing.T) {
 
 	successAction := func(i int) (string, error) { return "ok", nil }
 	failAction := func(i int) (string, error) { return "", errors.New("action error") }
-	alwaysTrueSpec := mockSpecification[int]{isSatisfiedBy: true}
-	alwaysFalseSpec := mockSpecification[int]{isSatisfiedBy: false}
+	var alwaysTrueSpec specification.Specification[int] = mockSpecification[int]{isSatisfiedBy: true}
+	var alwaysFalseSpec specification.Specification[int] = mockSpecification[int]{isSatisfiedBy: false}
 
 	tests := []test[int, string]{
 		{
@@ -282,7 +282,7 @@ func TestCombinedRule_BatchApply(t *testing.T) {
 
 	successAction := func(i int) (string, error) { return "ok", nil }
 	failAction := func(i int) (string, error) { return "", errors.New("action error") }
-	alwaysTrueSpec := mockSpecification[int]{isSatisfiedBy: true}
+	var alwaysTrueSpec specification.Specification[int] = mockSpecification[int]{isSatisfiedBy: true}
 
 	tests := []test[int, string]{
 		{
