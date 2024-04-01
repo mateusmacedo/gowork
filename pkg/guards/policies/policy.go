@@ -3,7 +3,7 @@ package policies
 import (
 	"errors"
 
-	"gowork/pkg/guards/rules"
+	"github.com/mateusmacedo/gowork/pkg/guards/rules"
 )
 
 type Policy[T any, R any] struct {

@@ -2,7 +2,8 @@ package rules
 
 import (
 	"fmt"
-	specification "gowork/pkg/guards/specs"
+
+	specification "github.com/mateusmacedo/gowork/pkg/guards/specs"
 )
 
 type Rule[T any, R any] interface {

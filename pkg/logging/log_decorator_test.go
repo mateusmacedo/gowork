@@ -3,7 +3,7 @@ package logging
 import (
 	"testing"
 
-	"gowork/pkg/logging/fixture"
+	"github.com/mateusmacedo/gowork/pkg/logging/fixture"
 )
 
 func TestLogDecorator(t *testing.T) {

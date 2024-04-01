@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"gowork/pkg/guards/policies"
-	"gowork/pkg/guards/rules"
+	"github.com/mateusmacedo/gowork/pkg/guards/policies"
+	"github.com/mateusmacedo/gowork/pkg/guards/rules"
 )
 
 type MockRule[T any, R any] struct {

@@ -1,10 +1,11 @@
 package specification_test
 
 import (
-	"gowork/pkg/guards/fixtures"
-	specification "gowork/pkg/guards/specs"
 	"reflect"
 	"testing"
+
+	"github.com/mateusmacedo/gowork/pkg/guards/fixtures"
+	specification "github.com/mateusmacedo/gowork/pkg/guards/specs"
 )
 
 func TestNewNotSpecification(t *testing.T) {

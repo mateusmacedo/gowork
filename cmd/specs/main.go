@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"gowork/pkg/guards/fixtures"
-	specification "gowork/pkg/guards/specs"
+
+	"github.com/mateusmacedo/gowork/pkg/guards/fixtures"
+	specification "github.com/mateusmacedo/gowork/pkg/guards/specs"
 )
 
 func main() {

@@ -1,7 +1,7 @@
 package fixtures
 
 import (
-	specification "gowork/pkg/guards/specs"
+	specification "github.com/mateusmacedo/gowork/pkg/guards/specs"
 )
 
 type CallableCandidateAssertion func(candidate any) bool

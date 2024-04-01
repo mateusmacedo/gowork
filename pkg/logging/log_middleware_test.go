@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"gowork/pkg/logging/fixture"
+	"github.com/mateusmacedo/gowork/pkg/logging/fixture"
 )
 
 func TestLogMiddleware(t *testing.T) {

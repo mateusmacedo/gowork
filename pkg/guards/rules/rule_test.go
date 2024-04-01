@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"gowork/pkg/guards/rules"
-	specification "gowork/pkg/guards/specs"
+	"github.com/mateusmacedo/gowork/pkg/guards/rules"
+	specification "github.com/mateusmacedo/gowork/pkg/guards/specs"
 )
 
 type mockSpecification[T any] struct {
